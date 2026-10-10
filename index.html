@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbra — Box Shadow Generator with Layers, Presets &amp; Copy CSS</title>
+<meta name="description" content="Umbra is a free box shadow generator and shadow lab. Stack multiple layers, toggle inset, try soft, material and neon presets, preview on shapes and copy CSS instantly.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,system-ui,sans-serif}h1,h2,h3,.font-display{font-family:'Space Grotesk',sans-serif}.stage{background-image:radial-gradient(#d4d4d8 1px,transparent 1px);background-size:18px 18px}input[type=range]{accent-color:#06b6d4}pre{white-space:pre-wrap;word-break:break-all}</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the CSS box-shadow property and what does Umbra do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CSS box-shadow property draws one or more shadows behind or inside an element, controlled by horizontal and vertical offsets, blur, spread, colour and opacity. Umbra is a visual lab for that property: you adjust sliders and colour controls, stack layers, preview the result on different shapes in real time, and copy production-ready CSS without guessing numbers in a stylesheet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the inset toggle do in Umbra?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inset flips a shadow from outside the element to inside it. An outset shadow falls behind the box and suggests the element is raised above the page. An inset shadow is clipped inside the border and suggests the element is pressed in, carved or hollow. Each layer in Umbra has its own inset toggle, so you can combine a soft outer drop shadow with a subtle inner highlight or inner depth in a single declaration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I stack multiple shadow layers, and why would I?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Umbra is built around multiple layers because a single shadow rarely looks natural. Real light creates a tight contact shadow close to an object and a wider, softer ambient shadow further away. Stacking two or three layers with different blur and opacity values reproduces that effect. Layers are applied in order, with the first layer on top, and you can add, duplicate, reorder by removing, and delete layers until the depth feels right."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do the Soft, Material and Neon presets in Umbra differ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Soft uses low opacity and generous blur for a gentle, floating feel that suits cards and modals. Material follows elevation principles with two coordinated layers, a tighter key shadow and a broader ambient shadow, for a grounded interface look. Neon uses coloured cyan shadows with zero offset and large blur radii to create a glowing halo around the element. Presets are starting points, every value stays editable after you apply one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I copy the CSS from Umbra into my project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the preview looks right, use the Copy CSS button in the code panel. Umbra copies a complete box-shadow declaration, including vendor-prefixed lines if you enable them, ready to paste into any class or component. You can also copy only the shadow value if you are working inside an existing rule, or copy the Tailwind arbitrary-value class. The copied code is exactly what the preview is rendering."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Umbra free and does it work without signing up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Umbra is completely free with unlimited usage, no account, no signup and no watermark. Everything runs locally in your browser, so your designs are never uploaded anywhere. You can open the page, build as many shadows as you like, test them on squares, circles, pills and cards, and copy the CSS as often as you need, on desktop or mobile."
+      }
+    }
+  ]
+}</script>
+</head>
+<body id="top" class="bg-zinc-100 text-zinc-900 antialiased">
+<header class="sticky top-0 z-50 bg-zinc-950 text-white border-b-4 border-cyan-400">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  <a href="#top" class="flex items-center gap-3"><span class="w-9 h-9 bg-white rounded-lg grid place-items-center shadow-[6px_6px_0_#06b6d4] text-zinc-950 font-black">◐</span><span class="font-display font-bold text-xl tracking-tight">Umbra</span><span class="hidden sm:inline text-[10px] tracking-widest uppercase bg-cyan-400 text-zinc-950 font-bold px-2 py-1 rounded-full">Shadow Lab</span></a>
+  <nav class="flex gap-6 text-sm font-semibold"><a href="#top" class="hover:text-cyan-300">Home</a><a href="https://fixoraa.tech" class="hover:text-cyan-300">More Tools</a></nav>
+ </div>
+</header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+ <div class="text-center max-w-2xl mx-auto">
+  <h1 class="font-display text-4xl sm:text-5xl font-bold leading-none">Box Shadow <span class="text-cyan-600">Generator</span></h1>
+  <p class="text-zinc-600 mt-4">Build depth layer by layer. Drag, glow, press in — then copy the CSS. No guessing, no stylesheet reloads.</p>
+  <span class="inline-block mt-4 bg-zinc-950 text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full">✦ Unlimited Free Usage — No Signup</span>
+ </div>
+
+ <!-- LAB -->
+ <section class="mt-8 grid lg:grid-cols-[380px_1fr] gap-6 items-start">
+  <!-- Controls -->
+  <div class="space-y-5 order-2 lg:order-1">
+   <div class="bg-white rounded-3xl border border-zinc-200 p-5 shadow-sm">
+    <h2 class="font-display font-bold">Presets</h2>
+    <p class="text-xs text-zinc-500 mt-1">One click loads a full layer stack. Tweak anything after.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4">
+      <button data-preset="soft" class="preset-btn border-2 border-zinc-200 hover:border-cyan-500 rounded-xl py-3 text-sm font-bold">Soft</button>
+      <button data-preset="material" class="preset-btn border-2 border-zinc-200 hover:border-cyan-500 rounded-xl py-3 text-sm font-bold">Material</button>
+      <button data-preset="neon" class="preset-btn border-2 border-cyan-500 bg-cyan-50 rounded-xl py-3 text-sm font-bold text-cyan-700">Neon</button>
+      <button data-preset="sharp" class="preset-btn border-2 border-zinc-200 hover:border-cyan-500 rounded-xl py-3 text-sm font-bold">Sharp</button>
+      <button data-preset="float" class="preset-btn border-2 border-zinc-200 hover:border-cyan-500 rounded-xl py-3 text-sm font-bold">Float</button>
+      <button data-preset="insetGlow" class="preset-btn border-2 border-zinc-200 hover:border-cyan-500 rounded-xl py-3 text-sm font-bold">Inset Glow</button>
+    </div>
+   </div>
+
+   <div class="bg-white rounded-3xl border border-zinc-200 p-5 shadow-sm">
+    <div class="flex items-center justify-between"><h2 class="font-display font-bold">Shadow Layers <span id="layerCount" class="text-cyan-600"></span></h2><button id="addLayer" class="bg-zinc-950 text-white text-sm font-bold px-3 py-2 rounded-full hover:bg-cyan-600">+ Add layer</button></div>
+    <p id="emptyMsg" class="hidden text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-3 mt-3">No layers yet — your shadow is set to <b>none</b>. Add a layer or pick a preset to start building depth.</p>
+    <div id="layers" class="space-y-4 mt-4"></div>
+    <div class="flex gap-2 mt-4"><button id="randomBtn" class="flex-1 border font-bold py-2 rounded-full text-sm">🎲 Randomise</button><button id="resetBtn" class="flex-1 border font-bold py-2 rounded-full text-sm">↺ Reset</button></div>
+   </div>
+
+   <div class="bg-white rounded-3xl border border-zinc-200 p-5 shadow-sm">
+    <h2 class="font-display font-bold">Preview shape &amp; stage</h2>
+    <div class="flex flex-wrap gap-2 mt-3" id="shapeBtns">
+      <button data-shape="rounded" class="shape-btn bg-zinc-950 text-white px-3 py-2 rounded-full text-sm font-bold">Rounded box</button>
+      <button data-shape="circle" class="shape-btn border px-3 py-2 rounded-full text-sm font-bold">Circle</button>
+      <button data-shape="pill" class="shape-btn border px-3 py-2 rounded-full text-sm font-bold">Pill / button</button>
+      <button data-shape="card" class="shape-btn border px-3 py-2 rounded-full text-sm font-bold">Card</button>
+      <button data-shape="square" class="shape-btn border px-3 py-2 rounded-full text-sm font-bold">Sharp square</button>
+    </div>
+    <label class="block text-xs font-bold mt-4 mb-1">ELEMENT COLOUR</label>
+    <div class="flex gap-2"><input type="color" id="elColor" value="#ffffff" class="w-12 h-10 rounded cursor-pointer border"><input id="elColorText" value="#ffffff" class="flex-1 border rounded-xl px-3 font-mono text-sm"></div>
+    <label class="block text-xs font-bold mt-4 mb-1">STAGE BACKGROUND</label>
+    <div class="flex gap-2" id="stageBtns"><button data-stage="light" class="stage-btn bg-zinc-950 text-white px-3 py-2 rounded-full text-sm font-bold">Light</button><button data-stage="dark" class="stage-btn border px-3 py-2 rounded-full text-sm font-bold">Dark</button><button data-stage="cyan" class="stage-btn border px-3 py-2 rounded-full text-sm font-bold">Cyan tint</button></div>
+   </div>
+  </div>
+
+  <!-- Preview + code -->
+  <div class="space-y-5 order-1 lg:order-2 lg:sticky lg:top-24">
+   <div id="stage" class="stage bg-zinc-50 rounded-[2rem] border border-zinc-200 min-h-[380px] grid place-items-center p-8 transition-colors">
+     <div id="preview" class="bg-white grid place-items-center text-center transition-all duration-200" style="width:220px;height:220px;border-radius:24px"><div><div class="text-4xl">◐</div><div class="font-display font-bold mt-1">Umbra</div><div class="text-xs text-zinc-500">live preview</div></div></div>
+   </div>
+   <div class="bg-zinc-950 text-white rounded-3xl p-5">
+    <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="font-display font-bold">Your CSS</h2><div class="flex gap-2"><label class="text-xs flex items-center gap-1"><input type="checkbox" id="prefixToggle"> Vendor prefixes</label></div></div>
+    <pre id="codeOut" class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 text-cyan-300 text-sm mt-3 overflow-auto"></pre>
+    <pre id="twOut" class="bg-zinc-900 border border-zinc-800 rounded-2xl p-3 text-zinc-300 text-xs mt-2 overflow-auto"></pre>
+    <div class="flex flex-wrap gap-2 mt-4">
+      <button id="copyCss" class="bg-cyan-400 text-zinc-950 font-bold px-5 py-3 rounded-full text-sm hover:bg-cyan-300">📋 Copy CSS</button>
+      <button id="copyValue" class="bg-white text-zinc-950 font-bold px-5 py-3 rounded-full text-sm">Copy value only</button>
+      <button id="copyTw" class="border border-zinc-700 font-bold px-5 py-3 rounded-full text-sm">Copy Tailwind class</button>
+      <button id="downloadBtn" class="border border-zinc-700 font-bold px-5 py-3 rounded-full text-sm">⬇ Download .css</button>
+    </div>
+    <p id="copyMsg" class="text-cyan-300 text-sm mt-3 h-5 font-semibold"></p>
+   </div>
+  </div>
+ </section>
+
+ <!-- SEO -->
+ <article class="mt-14 bg-white rounded-[2rem] border border-zinc-200 p-6 sm:p-10 prose-zinc max-w-none">
+  <h2 class="font-display text-3xl font-bold">The Complete Guide to CSS Box Shadows and the Umbra Shadow Lab</h2>
+  <p class="mt-4 leading-relaxed text-zinc-700">A shadow is the fastest way to tell a visitor what matters on a page. When a card lifts slightly off the background, the eye understands instantly that it is separate, important and probably clickable. When a button sinks inward, the eye reads it as pressed. All of that communication happens through a single CSS property, box-shadow, and yet it remains one of the most fiddly properties to write by hand. You type a string of pixel values, save, reload, squint, adjust by two pixels, reload again, and repeat until the depth finally feels right. Umbra exists to end that loop. It is a dedicated shadow lab where every value is a slider, every change is visible the moment you make it, and the finished CSS is one click away.</p>
+  <p class="mt-4 leading-relaxed text-zinc-700">The box-shadow property has a simple grammar with surprisingly expressive power. Each shadow is described by a horizontal offset, a vertical offset, a blur radius, a spread radius, a colour and an optional inset keyword. The horizontal offset moves the shadow left or right, the vertical offset moves it up or down, and together they imply a light source. If your shadows fall down and to the right, your imaginary light sits up and to the left, and keeping that direction consistent across a whole interface is one of the quiet rules that separates a polished design from a muddled one. Umbra makes the light source tangible: drag the offsets and watch the shadow swing around the element as if you were moving a lamp across a desk.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Blur, spread and the feeling of distance</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">Blur is what makes a shadow feel soft or hard. A small blur creates a crisp edge and reads as an object sitting very close to the surface beneath it, lit by a sharp, direct light. A large blur diffuses the edge and reads as an object floating far above the surface, or lit on an overcast day when light arrives from every direction at once. Spread works in the opposite direction to intuition for many beginners: it grows or shrinks the shadow before blur is applied. A positive spread makes a bold, deliberate shadow that can hold its shape even with generous blur, which is exactly how glowing effects are built. A negative spread tucks the shadow in so it only peeks out on the sides where the offsets push it, producing the refined, expensive-looking shadows used by modern design systems where the top edge of a card stays almost clean while the bottom carries the depth.</p>
+  <p class="mt-3 leading-relaxed text-zinc-700">Colour and opacity complete the illusion. A pure black shadow at full opacity almost never occurs in nature, because real shadows are softened by ambient light bouncing back into them. That is why most professional shadows sit between ten and thirty percent opacity, and why tinting a shadow with a hint of the background colour, a deep blue-grey on a cool interface or a warm brown on a cream page, makes it blend instead of looking like a grey sticker. In Umbra every layer carries its own colour picker and opacity slider, so you can test a neutral black shadow against a tinted one side by side simply by duplicating the layer, changing the colour and toggling between them in your head as you adjust. The neon family of effects pushes colour in the opposite direction, using a saturated cyan at high opacity so the shadow stops pretending to be a shadow at all and becomes light itself.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Why multiple layers always look more real</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">The single most important idea in shadow design is that one shadow is a compromise and two shadows are a simulation. In the physical world an object receives light from a key source and from the ambient environment at the same time. The key light casts a relatively tight, darker shadow close to the object, sometimes called the contact shadow, and it is what grounds the element and stops it looking like it floats in a void. The ambient light casts a much larger, fainter shadow that spreads in every direction and sells the height. When you combine a small, darker layer with a large, fainter layer in Umbra, cards suddenly acquire believable elevation. Add a third very subtle layer and you can fine-tune the transition for large elements such as modals and hero panels, where a single blur value would either look dirty at the corners or disappear at the edges. Umbra was designed around this principle, so adding, duplicating and deleting layers is the centre of the workflow rather than an advanced extra hidden in a menu.</p>
+  <p class="mt-3 leading-relaxed text-zinc-700">Order matters when layers stack. CSS paints the first shadow in the list on top of the others, so your tightest, darkest contact shadow should usually come first and your broad ambient glow last. If a layered shadow looks muddy, the fix is rarely to delete a layer; it is to lower the opacity of the broad layer, increase its blur, or pull its offsets toward zero so it spreads evenly. Experimenting with order and opacity inside the lab takes seconds, and that speed changes how you design. Instead of accepting the first acceptable shadow, you explore, and exploration is where distinctive visual identities come from.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Inset shadows: depth that goes inward</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">Every layer in Umbra has an inset toggle, and it deserves more attention than it usually gets. An inset shadow is drawn inside the element, clipped by its border, so instead of lifting the element off the page it carves the element into the page. Inset shadows are the foundation of pressed buttons, sunken input fields, wells, tracks for sliders and toggles, and the soft inner glow that makes a panel feel moulded rather than flat. A classic technique combines both worlds in one declaration: a faint outset shadow below the element to separate it from the background, plus a white or light inset shadow along the top edge to simulate light catching a bevel. Because each Umbra layer chooses inset independently, you can build that combination visually, watching the inside and outside depth develop together, rather than memorising which numbers in a long comma-separated string belong to which effect.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Presets with a purpose: soft, material and neon</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">Presets in Umbra are not decoration; each one teaches a different shadow language. The Soft preset uses generous blur and low opacity for a calm, floating feeling that suits content cards, dropdowns and tooltips on light backgrounds. It is forgiving, works at almost any size, and is the safest starting point for a new project. The Material preset reflects elevation systems popularised by modern interface guidelines, pairing a tighter key shadow with a broader ambient shadow at carefully balanced opacities, so a raised card, a floating action button and a dialog can share one consistent scale of heights. The Neon preset abandons realism entirely: zero offsets, saturated cyan and several expanding blur layers create a halo that belongs on dark themes, gaming interfaces, call-to-action buttons and anywhere energy matters more than subtlety. Sharp, Float and Inset Glow presets round out the lab, covering hard offset shadows for neo-brutalist layouts, high elevation for hero elements and carved inner depth respectively. Applying a preset loads its full layer stack into the editor, and every slider remains live, so a preset is always a beginning rather than a cage.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Preview shapes and honest testing</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">A shadow that flatters a large rounded card can overwhelm a small circular avatar, and a glow that sings on a pill-shaped button can look lost on a sharp square. That is why Umbra lets you preview the same shadow stack on several shapes: a rounded box, a circle, a pill, a content card and a sharp square. Switching shapes is a genuine design test, not a gimmick. Circles expose whether offsets are balanced, because any directional bias is obvious on a round element. Pills reveal whether a shadow survives at small heights, which matters for buttons and badges. Cards show how the shadow behaves near text and at realistic component widths. The stage background can also switch between light, dark and a cyan tint, because a shadow is always a relationship between an element and what sits behind it. Testing on a dark stage is especially important for neon work and for any interface that offers a dark mode, where a shadow that looked elegant on white can vanish or turn muddy.</p>
+  <h3 class="font-display text-xl font-bold mt-8">Copying CSS and fitting shadows into a real workflow</h3>
+  <p class="mt-3 leading-relaxed text-zinc-700">When the preview is right, Umbra gives you the code in the forms real projects actually use. Copy CSS produces a clean rule containing the box-shadow declaration, with optional vendor-prefixed lines for maximum compatibility with older browsers. Copy value only gives you the raw comma-separated shadow list for dropping into an existing class, a CSS variable or a design-token file. For utility-first workflows there is also a Tailwind arbitrary-value class, with spaces converted to underscores exactly as that syntax requires. Many teams go one step further and store their final stacks as named tokens, such as shadow-sm, shadow-md and shadow-lg equivalents built from Umbra stacks at three elevations, so every component in the product shares the same light source, the same tint and the same sense of height. Building those tokens visually, instead of typing numbers from memory, keeps the scale honest.</p>
+  <p class="mt-3 leading-relaxed text-zinc-700">A few habits will make every shadow you ship better. Keep one light direction across the whole product and never let shadows fall upward unless an element is deliberately lit from below. Prefer opacity and blur changes over ever-larger offsets, because distance reads mainly through softness. Avoid pure black at high opacity on coloured backgrounds, and tint instead. Respect performance: enormous blur radii on huge, constantly animating elements can be expensive on low-powered devices, so animate transform and opacity where you can, and keep the heaviest shadows on static surfaces. Finally, check accessibility. A shadow alone should never be the only signal that something is interactive or elevated, because users with low vision or forced-colour settings may not perceive it. Pair depth with borders, contrast and clear focus states, and your interface stays usable for everyone while still looking beautifully layered.</p>
+  <p class="mt-3 leading-relaxed text-zinc-700">Umbra is deliberately simple on the surface and complete underneath. Multiple layers for realism, an inset toggle on every layer for carved depth, several preview shapes and stage backgrounds for honest testing, soft, material and neon presets for a fast start, and one-click copying for CSS, raw values and utility classes. Open the lab, load a preset, break it, rebuild it, and leave with a shadow that is yours. That is the whole idea: depth you can see while you make it, and code you can trust when you paste it.</p>
+ </article>
+
+ <section class="mt-10"><h2 class="font-display text-2xl font-bold mb-4">Frequently Asked Questions</h2><div class="space-y-3"><details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">What is the CSS box-shadow property and what does Umbra do?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">The CSS box-shadow property draws one or more shadows behind or inside an element, controlled by horizontal and vertical offsets, blur, spread, colour and opacity. Umbra is a visual lab for that property: you adjust sliders and colour controls, stack layers, preview the result on different shapes in real time, and copy production-ready CSS without guessing numbers in a stylesheet.</p></details>
+<details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">What does the inset toggle do in Umbra?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">Inset flips a shadow from outside the element to inside it. An outset shadow falls behind the box and suggests the element is raised above the page. An inset shadow is clipped inside the border and suggests the element is pressed in, carved or hollow. Each layer in Umbra has its own inset toggle, so you can combine a soft outer drop shadow with a subtle inner highlight or inner depth in a single declaration.</p></details>
+<details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">Can I stack multiple shadow layers, and why would I?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">Yes. Umbra is built around multiple layers because a single shadow rarely looks natural. Real light creates a tight contact shadow close to an object and a wider, softer ambient shadow further away. Stacking two or three layers with different blur and opacity values reproduces that effect. Layers are applied in order, with the first layer on top, and you can add, duplicate, reorder by removing, and delete layers until the depth feels right.</p></details>
+<details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">How do the Soft, Material and Neon presets in Umbra differ?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">Soft uses low opacity and generous blur for a gentle, floating feel that suits cards and modals. Material follows elevation principles with two coordinated layers, a tighter key shadow and a broader ambient shadow, for a grounded interface look. Neon uses coloured cyan shadows with zero offset and large blur radii to create a glowing halo around the element. Presets are starting points, every value stays editable after you apply one.</p></details>
+<details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">How do I copy the CSS from Umbra into my project?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">When the preview looks right, use the Copy CSS button in the code panel. Umbra copies a complete box-shadow declaration, including vendor-prefixed lines if you enable them, ready to paste into any class or component. You can also copy only the shadow value if you are working inside an existing rule, or copy the Tailwind arbitrary-value class. The copied code is exactly what the preview is rendering.</p></details>
+<details class="bg-white border border-zinc-200 rounded-2xl p-5 group"><summary class="font-bold cursor-pointer list-none flex justify-between gap-4">Is Umbra free and does it work without signing up?<span class="text-cyan-600 group-open:rotate-45 transition">+</span></summary><p class="text-zinc-600 mt-3 leading-relaxed">Yes. Umbra is completely free with unlimited usage, no account, no signup and no watermark. Everything runs locally in your browser, so your designs are never uploaded anywhere. You can open the page, build as many shadows as you like, test them on squares, circles, pills and cards, and copy the CSS as often as you need, on desktop or mobile.</p></details></div></section>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<footer class="bg-zinc-950 text-zinc-400 text-center text-sm py-8 mt-8">Umbra — the shadow lab. Build depth, copy CSS, ship it.<p class="fx-credit" style="text-align:center;font-size:12.5px;opacity:.62;margin:10px auto 2px;letter-spacing:.01em">Made by <a href="https://fixoraa.tech" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px">Fixoraa</a></p>
+</footer>
+
+<script id="lib-umbra">
+var UmbraLib = (function(){
+  function clamp(v,min,max){ var n=Number(v); if(!isFinite(n)) return min; if(n<min) return min; if(n>max) return max; return n; }
+  function normalizeHex(hex){
+    if(typeof hex!=='string') return null;
+    var h=hex.trim().toLowerCase();
+    if(h.charAt(0)!=='#') h='#'+h;
+    if(/^#[0-9a-f]{3}$/.test(h)){ h='#'+h[1]+h[1]+h[2]+h[2]+h[3]+h[3]; }
+    if(/^#[0-9a-f]{6}$/.test(h)) return h;
+    if(/^#[0-9a-f]{8}$/.test(h)) return h.slice(0,7);
+    return null;
+  }
+  function isValidHex(hex){ return normalizeHex(hex)!==null; }
+  function hexToRgb(hex){
+    var n=normalizeHex(hex); if(!n) return null;
+    return { r: parseInt(n.slice(1,3),16), g: parseInt(n.slice(3,5),16), b: parseInt(n.slice(5,7),16) };
+  }
+  function rgbToHex(r,g,b){
+    function p(x){ var v=clamp(Math.round(x),0,255).toString(16); return v.length===1?'0'+v:v; }
+    return '#'+p(r)+p(g)+p(b);
+  }
+  function rgbaString(hex, opacity){
+    var rgb=hexToRgb(hex); var o=clamp(opacity,0,1);
+    if(!rgb) return 'rgba(0, 0, 0, '+o+')';
+    return 'rgba('+rgb.r+', '+rgb.g+', '+rgb.b+', '+o+')';
+  }
+  function sanitizeLayer(layer){
+    var l=layer||{};
+    return {
+      offsetX: Math.round(clamp(l.offsetX==null?10:l.offsetX,-100,200)),
+      offsetY: Math.round(clamp(l.offsetY==null?10:l.offsetY,-100,200)),
+      blur: Math.round(clamp(l.blur==null?20:l.blur,0,200)),
+      spread: Math.round(clamp(l.spread==null?0:l.spread,-80,120)),
+      color: normalizeHex(l.color)||'#000000',
+      opacity: Math.round(clamp(l.opacity==null?0.25:l.opacity,0,1)*100)/100,
+      inset: !!l.inset
+    };
+  }
+  function formatLayer(layer){
+    var l=sanitizeLayer(layer);
+    return (l.inset?'inset ':'')+l.offsetX+'px '+l.offsetY+'px '+l.blur+'px '+l.spread+'px '+rgbaString(l.color,l.opacity);
+  }
+  function buildBoxShadow(layers){
+    if(!Array.isArray(layers)||layers.length===0) return 'none';
+    return layers.map(formatLayer).join(', ');
+  }
+  function buildCss(layers, selector){
+    var shadow=buildBoxShadow(layers);
+    var sel=selector||'.element';
+    return sel+' {\n  box-shadow: '+shadow+';\n}';
+  }
+  function buildCssWithPrefixes(layers){
+    var s=buildBoxShadow(layers);
+    return 'box-shadow: '+s+';\n-webkit-box-shadow: '+s+';\n-moz-box-shadow: '+s+';';
+  }
+  function tailwindArbitrary(layers){
+    var s=buildBoxShadow(layers);
+    if(s==='none') return 'shadow-none';
+    return 'shadow-['+s.replace(/ /g,'_').replace(/,/g,'_')+']';
+  }
+  var PRESETS={
+    soft:[{offsetX:0,offsetY:8,blur:24,spread:0,color:'#000000',opacity:0.12,inset:false},{offsetX:0,offsetY:2,blur:6,spread:0,color:'#000000',opacity:0.08,inset:false}],
+    material:[{offsetX:0,offsetY:10,blur:15,spread:-3,color:'#000000',opacity:0.30,inset:false},{offsetX:0,offsetY:4,blur:6,spread:-2,color:'#000000',opacity:0.20,inset:false}],
+    neon:[{offsetX:0,offsetY:0,blur:18,spread:2,color:'#06b6d4',opacity:0.90,inset:false},{offsetX:0,offsetY:0,blur:42,spread:6,color:'#06b6d4',opacity:0.55,inset:false},{offsetX:0,offsetY:0,blur:80,spread:10,color:'#0891b2',opacity:0.35,inset:false}],
+    sharp:[{offsetX:6,offsetY:6,blur:0,spread:0,color:'#111111',opacity:1,inset:false}],
+    float:[{offsetX:0,offsetY:24,blur:48,spread:-8,color:'#000000',opacity:0.18,inset:false},{offsetX:0,offsetY:8,blur:16,spread:-4,color:'#000000',opacity:0.12,inset:false}],
+    insetGlow:[{offsetX:0,offsetY:2,blur:8,spread:0,color:'#000000',opacity:0.25,inset:true},{offsetX:0,offsetY:0,blur:20,spread:2,color:'#06b6d4',opacity:0.35,inset:true}]
+  };
+  function getPreset(name){
+    if(!name||!PRESETS[name]) return null;
+    return PRESETS[name].map(function(l){ return sanitizeLayer(l); });
+  }
+  function presetNames(){ return Object.keys(PRESETS); }
+  function duplicateLayer(layer){ return sanitizeLayer(JSON.parse(JSON.stringify(layer||{}))); }
+  return { clamp:clamp, normalizeHex:normalizeHex, isValidHex:isValidHex, hexToRgb:hexToRgb, rgbToHex:rgbToHex, rgbaString:rgbaString, sanitizeLayer:sanitizeLayer, formatLayer:formatLayer, buildBoxShadow:buildBoxShadow, buildCss:buildCss, buildCssWithPrefixes:buildCssWithPrefixes, tailwindArbitrary:tailwindArbitrary, PRESETS:PRESETS, getPreset:getPreset, presetNames:presetNames, duplicateLayer:duplicateLayer };
+})();
+if(typeof module!=='undefined'&&module.exports){ module.exports=UmbraLib; }
+
+</script>
+<script>
+var layers=UmbraLib.getPreset('material');
+var shape='rounded';
+function renderLayers(){
+ document.getElementById('layerCount').textContent='('+layers.length+')';
+ document.getElementById('emptyMsg').classList.toggle('hidden',layers.length>0);
+ var wrap=document.getElementById('layers'); wrap.innerHTML='';
+ layers.forEach(function(l,i){
+  var d=document.createElement('div'); d.className='border-2 border-zinc-200 rounded-2xl p-4';
+  d.innerHTML='<div class="flex justify-between items-center"><b class="text-sm">Layer '+(i+1)+'</b><span class="flex gap-1"><button data-act="dup" class="text-xs border px-2 py-1 rounded-full font-bold">Duplicate</button><button data-act="del" class="text-xs border px-2 py-1 rounded-full font-bold text-red-600">Delete</button></span></div>'
+  + slider('offsetX','Offset X',-100,200,l.offsetX)+slider('offsetY','Offset Y',-100,200,l.offsetY)+slider('blur','Blur',0,200,l.blur)+slider('spread','Spread',-80,120,l.spread)+slider('opacity','Opacity',0,100,Math.round(l.opacity*100))
+  +'<div class="flex items-center gap-2 mt-3"><input type="color" data-f="color" value="'+l.color+'" class="w-10 h-9 border rounded cursor-pointer"><input data-f="colorText" value="'+l.color+'" class="flex-1 border rounded-lg px-2 py-1 font-mono text-sm"><label class="text-sm font-bold flex items-center gap-1"><input type="checkbox" data-f="inset" '+(l.inset?'checked':'')+'> Inset</label></div>';
+  d.querySelectorAll('input[type=range]').forEach(function(r){ r.addEventListener('input',function(){ var f=r.dataset.f; var v=Number(r.value); if(f==='opacity') layers[i].opacity=v/100; else layers[i][f]=v; d.querySelector('[data-v="'+f+'"]').textContent=r.value; update(); });});
+  d.querySelector('[data-f="color"]').addEventListener('input',function(e){ layers[i].color=e.target.value; d.querySelector('[data-f="colorText"]').value=e.target.value; update();});
+  d.querySelector('[data-f="colorText"]').addEventListener('change',function(e){ var n=UmbraLib.normalizeHex(e.target.value); if(n){layers[i].color=n; e.target.value=n; d.querySelector('[data-f="color"]').value=n; update();} else { e.target.value=layers[i].color; alert('Please enter a valid hex colour like #06b6d4'); }});
+  d.querySelector('[data-f="inset"]').addEventListener('change',function(e){ layers[i].inset=e.target.checked; update();});
+  d.querySelector('[data-act="dup"]').addEventListener('click',function(){ layers.splice(i+1,0,UmbraLib.duplicateLayer(layers[i])); renderLayers(); update();});
+  d.querySelector('[data-act="del"]').addEventListener('click',function(){ layers.splice(i,1); renderLayers(); update();});
+  wrap.appendChild(d);
+ });
+}
+function slider(f,label,min,max,val){ return '<label class="block text-xs font-bold mt-3">'+label+' <span data-v="'+f+'" class="text-cyan-600 float-right">'+val+'</span></label><input type="range" data-f="'+f+'" min="'+min+'" max="'+max+'" value="'+val+'" class="w-full">'; }
+function applyShape(){
+ var p=document.getElementById('preview');
+ var styles={rounded:{w:'220px',h:'220px',r:'24px'},circle:{w:'200px',h:'200px',r:'9999px'},pill:{w:'260px',h:'110px',r:'9999px'},card:{w:'280px',h:'190px',r:'18px'},square:{w:'210px',h:'210px',r:'0px'}};
+ var s=styles[shape]; p.style.width=s.w; p.style.height=s.h; p.style.borderRadius=s.r;
+}
+function update(){
+ var shadow=UmbraLib.buildBoxShadow(layers);
+ document.getElementById('preview').style.boxShadow=shadow==='none'?'none':shadow;
+ var usePrefix=document.getElementById('prefixToggle').checked;
+ document.getElementById('codeOut').textContent=usePrefix?UmbraLib.buildCssWithPrefixes(layers):UmbraLib.buildCss(layers,'.your-element');
+ document.getElementById('twOut').textContent=UmbraLib.tailwindArbitrary(layers);
+}
+document.getElementById('addLayer').addEventListener('click',function(){ layers.push({offsetX:0,offsetY:12,blur:24,spread:0,color:'#000000',opacity:0.18,inset:false}); renderLayers(); update();});
+document.querySelectorAll('.preset-btn').forEach(function(b){ b.addEventListener('click',function(){ layers=UmbraLib.getPreset(b.dataset.preset); renderLayers(); update(); document.getElementById('copyMsg').textContent='Preset loaded: '+b.textContent.trim(); });});
+document.querySelectorAll('.shape-btn').forEach(function(b){ b.addEventListener('click',function(){ shape=b.dataset.shape; document.querySelectorAll('.shape-btn').forEach(function(x){x.className='shape-btn border px-3 py-2 rounded-full text-sm font-bold'}); b.className='shape-btn bg-zinc-950 text-white px-3 py-2 rounded-full text-sm font-bold'; applyShape(); });});
+document.querySelectorAll('.stage-btn').forEach(function(b){ b.addEventListener('click',function(){ var st=document.getElementById('stage'); st.className='stage rounded-[2rem] border min-h-[380px] grid place-items-center p-8 transition-colors '+(b.dataset.stage==='dark'?'bg-zinc-900 border-zinc-800':b.dataset.stage==='cyan'?'bg-cyan-50 border-cyan-200':'bg-zinc-50 border-zinc-200'); document.querySelectorAll('.stage-btn').forEach(function(x){x.className='stage-btn border px-3 py-2 rounded-full text-sm font-bold'}); b.className='stage-btn bg-zinc-950 text-white px-3 py-2 rounded-full text-sm font-bold'; });});
+function syncElColor(v){ var n=UmbraLib.normalizeHex(v); if(n){document.getElementById('preview').style.background=n; document.getElementById('elColor').value=n; document.getElementById('elColorText').value=n;} }
+document.getElementById('elColor').addEventListener('input',function(e){syncElColor(e.target.value)});
+document.getElementById('elColorText').addEventListener('change',function(e){syncElColor(e.target.value)});
+document.getElementById('prefixToggle').addEventListener('change',update);
+document.getElementById('randomBtn').addEventListener('click',function(){ function r(a,b){return Math.round(a+Math.random()*(b-a))} layers=[{offsetX:r(-20,20),offsetY:r(4,30),blur:r(8,60),spread:r(-10,10),color:'#000000',opacity:Math.round(Math.random()*30+10)/100,inset:false},{offsetX:0,offsetY:0,blur:r(20,80),spread:0,color:'#06b6d4',opacity:Math.round(Math.random()*40+20)/100,inset:false}]; renderLayers(); update();});
+document.getElementById('resetBtn').addEventListener('click',function(){ layers=UmbraLib.getPreset('material'); renderLayers(); update();});
+function copyText(t,msg){ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(function(){document.getElementById('copyMsg').textContent=msg;}); } else { var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); document.getElementById('copyMsg').textContent=msg;}catch(e){} ta.remove(); } }
+document.getElementById('copyCss').addEventListener('click',function(){ copyText(document.getElementById('codeOut').textContent,'✓ CSS copied — paste it into your stylesheet.');});
+document.getElementById('copyValue').addEventListener('click',function(){ copyText(UmbraLib.buildBoxShadow(layers),'✓ Shadow value copied.');});
+document.getElementById('copyTw').addEventListener('click',function(){ copyText(UmbraLib.tailwindArbitrary(layers),'✓ Tailwind class copied.');});
+document.getElementById('downloadBtn').addEventListener('click',function(){ var blob=new Blob([document.getElementById('codeOut').textContent],{type:'text/css'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='umbra-shadow.css'; a.click(); URL.revokeObjectURL(a.href);});
+renderLayers(); applyShape(); update();
+</script>
+</body></html>
